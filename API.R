@@ -9,13 +9,17 @@ library(tidyverse)
 # API parameters ----------------------------------------------------------
 
 api_key <- "301d155c0a3366e8"
-data <- "bigmac_index"
-countries <- "se,us,gb,de,tr,dk,br"
+data <- "fifa"
+countries <- "se,us,gb,de,tr,dk,br,cn,ru,jp,ar"
 # start_year <- ""
 # end_year <- ""
 
 
 
+
+# Function ----------------------------------------------------------------
+
+api <- function(data, countries){
 # API call ----------------------------------------------------------------
 # API info 
 # http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data
@@ -44,10 +48,20 @@ for(i in 1:length(results)){
     }
 }
 
-
+output$value <- as.numeric(output$value)
 # plot --------------------------------------------------------------------
 
-ggplot(data = output, aes(x = year, y = value, colour = country, group = country)) +
+return(ggplot(data = output, aes(x = year, y = value, colour = country, group = country)) +
     geom_path() +
-    geom_point()
+    geom_point())
+}
 
+
+# Function call -----------------------------------------------------------
+api("happiness_index", countries)
+api("corruption_index", countries)
+api("life_expectancy", countries)
+api("internetusers_percent", countries)
+api("olympicsummergames_goldmedals", countries)
+api("fifa", countries)
+api("inflation", countries)
