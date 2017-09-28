@@ -21,8 +21,9 @@ ui <- fluidPage(
       sidebarPanel(
           selectInput(inputId = "input_dataset", label = "Choose data set", unique(resp$dataset)),
           checkboxGroupInput(inputId = "input_country", label = "Choose Country", unique(resp$country))
+          # sliderInput(inputId = "input_date_range", label = "Select Years", min = min(resp$year), max = max(resp$year),
+          #            value = c(min(resp$year), max(resp$year)), dragRange = TRUE, step = 1)
       ),
-
 
       # Show a plot of the generated distribution
       mainPanel(
@@ -36,12 +37,14 @@ server <- function(input, output) {
     
         output$time_serie_plot <- renderPlot({
             if (length(input$input_country) == 0) {
-                "select country"
+                
             } else {
             plot_df <- resp %>%
-                filter(country == input$input_country,
-                       dataset == input$input_dataset)
-            
+                filter(country %in% input$input_country,
+                       dataset %in% input$input_dataset
+                       #year %in% as.numeric(input$input_date_range)
+                       )
+          
             # make ggplot
             ggplot(data = plot_df, aes(x = year, y = value, colour = country, group = country)) +
                 geom_path() +
