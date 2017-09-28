@@ -1,0 +1,12 @@
+Package: INQStatsR
+Type: Package
+Title: INQStatsR
+Version: 1.0
+Date: 2017-09-28
+Author: Henrik Karlsson and Milda Poceviciute
+Maintainer: Milda Poceviciute <m.poceviciute@gmail.com>
+Description: The package is used to extract data from INQStats API, year range, countries and datasets are manually specified by the user. Data is returned as a data.frame.
+License: GPL-2
+Depends: R (>= 3.0.1), jsonlite, httr
+Imports: jsonlite, methods
+RoxygenNote: 6.0.1
