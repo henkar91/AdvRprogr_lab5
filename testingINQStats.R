@@ -50,3 +50,11 @@ runShinyapp(df$result)
 
 df$country_code
 
+a <- as.numeric(as.vector(test1$result[4])))
+b <- as.vector(test1$result[4])
+
+
+
+
+
+
