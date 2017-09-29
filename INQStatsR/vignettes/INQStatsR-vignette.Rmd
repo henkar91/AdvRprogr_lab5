@@ -1,0 +1,95 @@
+---
+title: "INQStatsR-vignette"
+author: "Henrik Karlsson and Milda Poceviciute"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{INQStatsR-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+## INQStats API
+
+The INQStats API provides various statistical data from all countries, making it possible to easily analyse and compare them. Available data sets are: Population, migration rate, education expenditure, health expenditure, number of internet users, median age, median wage, public debts, life expectancy and several more.
+
+## INQStatsR package
+
+```{r, eval = FALSE}
+devtools::install_github("henkar91/AdvRprogr_lab5/INQStatsR")
+library(INQStatsR)
+```
+
+The package contains two functions, databycountry() and runShinyapp(). 
+
+The package depends on 4 other packages:
+```{r, eval = FALSE}
+library(httr)
+library(jsonlite)
+library(dplyr)
+library(ggplot2)
+```
+
+## databycountry() function
+
+databycountry() connects you and provides you with a data frame of the requested input from INQStats API. 
+
+### Request
+databycountry() require 4 parameters for running the function. 
+
+
+1. **api_key** = an access token to access the API. Access token can be generated from this [website](http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data).
+
+2. **country_code** = a selection of what countries to extract from the API. Select a country by stating it's *ISO 3166-1* code in a string. If you want to select several countries at once, add the countries as to the string and separate by comma (,) **without** spaces.
+
+3. **data** = Selects which data set to load from the API. You can find a complete list of available data sets [here](http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data). 
+
+4. **years** = Specify the time range of the data you want to extract from the API. All available data points in the data set within the time frame is returned. years parameter should be a vector of years, for instance "2005:2010".
+
+
+The following example code will extract the data sets listed in *data*, for the *years* 1998 to 2017 for the following *contries*; Sweden, Norway, Denmark, Finland, USA and Germany. Not all data sets contains data for the whole time period (1998-2017), if that is the case all available data points within the range will be returned.
+
+```{r, api_example1, eval = FALSE}
+df <- databycountry$new(api_key = "insert_generated_api_key", 
+                        country_code = "se,no,dk,fi,us,de", 
+                        data = c("population", 
+                                 "bigmac_index",
+                                 "death_rate",
+                                 "debts_capita",
+                                 "debts_percent",
+                                 "jobless_rate",
+                                 "life_expectancy",
+                                 "olympicsummergames_goldmedals",
+                                 "gdp_capita",
+                                 "corruption_index",
+                                 "birth_rate",
+                                 "electric_energy_consumption"), 
+                        years = 1998:2017)
+```
+
+### Return
+
+databycountry() returns whats being specified in the API-call to an RC-class object. You can extract all parameters from the API-call in RC-object and the result which is a dataframe containing the output data.
+
+To view the returned data from the API run:
+```{r, api_example2, eval = FALSE}
+df$result
+```
+
+The returned data frame works as input for the runShinyapp() function.
+
+## runShinyapp
+
+runShinyapp() launches shiny visualization and requires one parameter input, *data*, which is a data frame with a predefined structure. If you insert data from databycountry() function, the data frame will have the correct data structure. 
+
+```{r, shiny_example1, eval = FALSE}
+runShinyapp(df$result)
+```
+
+The Shiny app uses ggplot2 to visualize the inserted data as a time series. Within the app, you can select several contries that are being visualized for one data set at once. You can easily change which data set that is being visualized.
+
+### Session info
+```{r}
+sessionInfo()
+```
