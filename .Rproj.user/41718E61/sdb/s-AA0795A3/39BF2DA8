@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"linreg\")\n\ndata(\"iris\")\n\nPolygon <- setRefClass(\"Polygon\", fields = c(\"sides\"))\nsquare <- Polygon$new(sides = 4)\ntest_that(\"lenreg rejects errounous input\", {\n    expect_error(linreg_mod <- linreg$new(formula = Petal.Length~Sepdsal.Width+Sepal.Length, data=iris))\n    expect_error(linreg_mod <- linreg$new(formula = Petal.Length~Sepdsal.Width+Sepal.Length, data=irfsfdis))\n})\n\n\ntest_that(\"class is correct\", {\n    linreg_mod <- linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)\n    \n    expect_true(class(linreg_mod)[1] == \"linreg\")\n})\n\ntest_that(\"print() method works\", {\n    linreg_mod <- linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)\n    \n    expect_output(linreg_mod$print(),\"linreg\\\\(formula = Petal\\\\.Length ~ Sepal\\\\.Width \\\\+ Sepal\\\\.Length, data = iris\\\\)\")\n    expect_output(linreg_mod$print(),\"\\\\(Intercept\\\\) Sepal\\\\.Width Sepal\\\\.Length\")\n})\n\ntest_that(\"pred() method works\", {\n    linreg_mod <- linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)\n    \n    expect_equal(round(unname(linreg_mod$pred()[c(1,5,7)]),2), c(1.85, 1.53, 1.09))    \n})\n\ntest_that(\"resid() method works\", {\n    linreg_mod <- linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)\n    \n    expect_equal(round(unname(linreg_mod$resid()[c(7,13,27)]),2), c(0.31, -0.58, -0.20))\n})\n\ntest_that(\"coef() method works\", {\n    linreg_mod <- linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)\n    \n    expect_true(all(round(unname(linreg_mod$coef()),2) %in% c(-2.52, -1.34, 1.78)))\n})\n\n\ntest_that(\"summary() method works\", {\n    linreg_mod <- linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)\n    \n    expect_output(linreg_mod$summary(), \"\\\\(Intercept\\\\)( )*-2.5[0-9]*( )*0.5[0-9]*( )*-4.4[0-9]*( )*.*( )*\\\\*\\\\*\\\\*\")  \n    expect_output(linreg_mod$summary(), \"Sepal.Width( )*-1.3[0-9]*( )*0.1[0-9]*( )*-10.9[0-9]*( )*.*( )*\\\\*\\\\*\\\\*\")\n    expect_output(linreg_mod$summary(), \"Sepal.Length( )*1.7[0-9]*( )*0.0[0-9]*( )*27.5[0-9]*( )*.*( )*\\\\*\\\\*\\\\*\")\n    expect_output(linreg_mod$summary(), \"Residual standard error: 0.6[0-9]* on 147 degrees of freedom\")\n})",
+    "created" : 1506688533410.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "85846966",
+    "id" : "39BF2DA8",
+    "lastKnownWriteTime" : 1506082647,
+    "last_content_update" : 1506082647,
+    "path" : "~/R/Advanced R course/AdvRprogr_lab4/tests/testthat/test_linreg.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
