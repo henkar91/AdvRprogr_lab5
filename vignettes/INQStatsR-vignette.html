@@ -91,10 +91,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="databycountry-function" class="section level2">
 <h2>databycountry() function</h2>
-<p>databycountry() connects you and provides you with a data frame of the requested input from INQStats API.</p>
+<p>databycountry() provides a data frame of the requested output from INQStats API.</p>
 <div id="request" class="section level3">
 <h3>Request</h3>
-<p>databycountry() require 4 parameters for running the function.</p>
+<p>databycountry() requires 4 parameters.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>api_key</strong> = an access token to access the API. Access token can be generated from this <a href="http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data">website</a>.</p></li>
 <li><p><strong>country_code</strong> = a selection of what countries to extract from the API. Select a country by stating it’s <em>ISO 3166-1</em> code in a string. If you want to select several countries, add the countries in the parameter as to a string vector.</p></li>
@@ -123,32 +123,37 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>databycountry() returns whats being specified in the API-call to an RC-class object. You can extract all parameters from the API-call in RC-object and the result which is a dataframe containing the output data.</p>
 <p>To view the returned data from the API run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$result</code></pre></div>
-<p>The returned data frame works as input for the runShinyapp() function.</p>
 </div>
-</div>
-<div id="runshinyapp" class="section level2">
-<h2>runShinyapp</h2>
-<p>runShinyapp() launches shiny visualization and requires one parameter input, <em>data</em>, which is a data frame with a predefined structure. If you insert data from databycountry() function, the data frame will have the correct data structure.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runShinyapp</span>(df$result)</code></pre></div>
-<p>The Shiny app uses ggplot2 to visualize the inserted data as a time series. Within the app, you can select several contries that are being visualized for one data set at once. You can easily change which data set that is being visualized.</p>
 <div id="session-info" class="section level3">
 <h3>Session info</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.3.1 (2016-06-21)
-## Platform: x86_64-apple-darwin13.4.0 (64-bit)
-## Running under: OS X 10.12.6 (Sierra)
+<pre><code>## R version 3.4.1 (2017-06-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 10586)
+## 
+## Matrix products: default
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## [1] LC_COLLATE=C                           
+## [2] LC_CTYPE=English_United Kingdom.1252   
+## [3] LC_MONETARY=English_United Kingdom.1252
+## [4] LC_NUMERIC=C                           
+## [5] LC_TIME=English_United Kingdom.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
+## other attached packages:
+## [1] INQStatsR_1.0 httr_1.3.1    jsonlite_1.5 
+## 
 ## loaded via a namespace (and not attached):
-##  [1] backports_1.1.0 magrittr_1.5    rprojroot_1.2   tools_3.3.1    
-##  [5] htmltools_0.3.6 yaml_2.1.14     Rcpp_0.12.12    stringi_1.1.5  
-##  [9] rmarkdown_1.6   knitr_1.17      stringr_1.2.0   digest_0.6.12  
-## [13] evaluate_0.10.1</code></pre>
+##  [1] Rcpp_0.12.12     knitr_1.17       xml2_1.1.1       magrittr_1.5    
+##  [5] roxygen2_6.0.1   devtools_1.13.3  R6_2.2.2         stringr_1.2.0   
+##  [9] tools_3.4.1      withr_2.0.0      htmltools_0.3.6  commonmark_1.4  
+## [13] yaml_2.1.14      digest_0.6.12    assertthat_0.2.0 rprojroot_1.2   
+## [17] crayon_1.3.2     codetools_0.2-15 testthat_1.0.2   memoise_1.1.0   
+## [21] evaluate_0.10.1  rmarkdown_1.6    stringi_1.1.5    compiler_3.4.1  
+## [25] desc_1.1.1       backports_1.1.0</code></pre>
 </div>
 </div>
 
