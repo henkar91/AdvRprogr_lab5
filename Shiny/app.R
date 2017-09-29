@@ -1,7 +1,6 @@
 #' @title INQStats Shiny visualization
-#' @field result a data frame.
+#' @field results from a data frame.
 #' @description Visualize a time series of the data extracted from INQStats API
-#' @examples runShinyapp(df$results)
 #' @export runShinyapp
 #' @export
 
