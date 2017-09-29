@@ -27,3 +27,26 @@ n <- "lala"
 n_rep <- c()
 n_rep <- rep.int(n, 10)
 
+# Test run from start
+library(INQStatsR)
+
+df <- databycountry$new(api_key = "97c1f72e01dd5ba3", 
+                        country_code = "se,no,dk,fi,us,de", 
+                        data = c("population", 
+                                 "bigmac_index",
+                                 "death_rate",
+                                 "debts_capita",
+                                 "debts_percent",
+                                 "fixed_telephone_subscriptions",
+                                 "jobless_rate",
+                                 "life_expectancy",
+                                 "olympicsummergames_goldmedals",
+                                 "gdp_capita",
+                                 "corruption_index",
+                                 "birth_rate",
+                                 "electric_energy_consumption"), 
+                        years = 1998:2017)
+runShinyapp(df$result)
+
+df$country_code
+
