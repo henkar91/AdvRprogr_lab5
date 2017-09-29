@@ -1,7 +1,6 @@
 #' @title INQStats Shiny visualization
 #' @field data a data frame
 #' @description Visualize a time series of the data extracted from INQStats API
-#' @example runShinyapp(df$result)
 #' @export runShinyapp
 #' @export
 
@@ -9,6 +8,7 @@
 runShinyapp <- function(data){
     library(shiny)
     library(dplyr)
+    library(ggplot2)
     # Define UI for application that draws a histogram
     ui <- fluidPage(
         

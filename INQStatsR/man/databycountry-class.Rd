@@ -14,9 +14,9 @@ Further information about  INQStats, e.g. how to get api key, what data is avail
 \describe{
 \item{\code{api_key}}{a key received from INQStats.}
 
-\item{\code{country_code}}{a string of ISO 3166-1 country codes, e.g. "us,gb,se".}
+\item{\code{country_code}}{a vector of ISO 3166-1 country codes, e.g. "us,gb,se".}
 
-\item{\code{data}}{a data, presented as a vector, e.g. c("population","birth_rate").}
+\item{\code{data}}{a data-set, as a vector, e.g. c("population","birth_rate").}
 
 \item{\code{years}}{a year range, as a vector, e.g.  1990:2002.}
 
