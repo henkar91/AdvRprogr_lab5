@@ -97,13 +97,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>databycountry() require 4 parameters for running the function.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>api_key</strong> = an access token to access the API. Access token can be generated from this <a href="http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data">website</a>.</p></li>
-<li><p><strong>country_code</strong> = a selection of what countries to extract from the API. Select a country by stating it’s <em>ISO 3166-1</em> code in a string. If you want to select several countries at once, add the countries as to the string and separate by comma (,) <strong>without</strong> spaces.</p></li>
+<li><p><strong>country_code</strong> = a selection of what countries to extract from the API. Select a country by stating it’s <em>ISO 3166-1</em> code in a string. If you want to select several countries, add the countries in the parameter as to a string vector.</p></li>
 <li><p><strong>data</strong> = Selects which data set to load from the API. You can find a complete list of available data sets <a href="http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data">here</a>.</p></li>
 <li><p><strong>years</strong> = Specify the time range of the data you want to extract from the API. All available data points in the data set within the time frame is returned. years parameter should be a vector of years, for instance “2005:2010”.</p></li>
 </ol>
 <p>The following example code will extract the data sets listed in <em>data</em>, for the <em>years</em> 1998 to 2017 for the following <em>contries</em>; Sweden, Norway, Denmark, Finland, USA and Germany. Not all data sets contains data for the whole time period (1998-2017), if that is the case all available data points within the range will be returned.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>databycountry$<span class="kw">new</span>(<span class="dt">api_key =</span> <span class="st">&quot;insert_generated_api_key&quot;</span>, 
-                        <span class="dt">country_code =</span> <span class="st">&quot;se,no,dk,fi,us,de&quot;</span>, 
+                        <span class="dt">country_code =</span> <span class="kw">c</span>(<span class="st">&quot;se&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;dk&quot;</span>, <span class="st">&quot;fi&quot;</span>, <span class="st">&quot;us&quot;</span>, <span class="st">&quot;de&quot;</span>), 
                         <span class="dt">data =</span> <span class="kw">c</span>(<span class="st">&quot;population&quot;</span>, 
                                  <span class="st">&quot;bigmac_index&quot;</span>,
                                  <span class="st">&quot;death_rate&quot;</span>,
