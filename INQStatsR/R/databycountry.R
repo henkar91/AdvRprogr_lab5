@@ -37,6 +37,11 @@ databycountry <-  setRefClass(
             # Add neccessary libraries
             library(jsonlite)
             library(httr)
+            
+            stopifnot(is.numeric(years),is.vector(years))
+            stopifnot(is.character(country_code),is.vector(country_code))
+            stopifnot(is.character(data),is.vector(data))
+            stopifnot(is.character(api_key),length(api_key)==1)
 
             # Create character string without spaces of country_code
             country_ch <- gsub(" ", "", toString(country_code), fixed = TRUE)
