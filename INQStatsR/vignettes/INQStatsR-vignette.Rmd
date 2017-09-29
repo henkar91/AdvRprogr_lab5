@@ -33,15 +33,15 @@ library(ggplot2)
 
 ## databycountry() function
 
-databycountry() connects you and provides you with a data frame of the requested input from INQStats API. 
+databycountry() provides a data frame of the requested output from INQStats API. 
 
 ### Request
-databycountry() require 4 parameters for running the function. 
+databycountry() requires 4 parameters. 
 
 
 1. **api_key** = an access token to access the API. Access token can be generated from this [website](http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data).
 
-2. **country_code** = a selection of what countries to extract from the API. Select a country by stating it's *ISO 3166-1* code in a string. If you want to select several countries at once, add the countries as to the string and separate by comma (,) **without** spaces.
+2. **country_code** = a selection of what countries to extract from the API. Select a country by stating it's *ISO 3166-1* code in a string. If you want to select several countries, add the countries in the parameter as to a string vector.
 
 3. **data** = Selects which data set to load from the API. You can find a complete list of available data sets [here](http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data). 
 
@@ -52,7 +52,7 @@ The following example code will extract the data sets listed in *data*, for the 
 
 ```{r, api_example1, eval = FALSE}
 df <- databycountry$new(api_key = "insert_generated_api_key", 
-                        country_code = "se,no,dk,fi,us,de", 
+                        country_code = c("se", "no", "dk", "fi", "us", "de"), 
                         data = c("population", 
                                  "bigmac_index",
                                  "death_rate",
