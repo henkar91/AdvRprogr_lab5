@@ -12,6 +12,6 @@ Visualize a time series of the data extracted from INQStats API
 \section{Fields}{
 
 \describe{
-\item{\code{results}}{from a data frame.}
+\item{\code{data}}{a data frame}
 }}
 
