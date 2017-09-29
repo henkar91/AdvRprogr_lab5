@@ -1,6 +1,5 @@
 \name{INQStatsR-package}
 \alias{INQStatsR-package}
-\alias{INQStatsR}
 \docType{package}
 \title{
 \packageTitle{INQStatsR}
@@ -13,7 +12,7 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{INQStatsR}
 \packageIndices{INQStatsR}
-~~ An overview of how to use the package, including the most important functions ~~
+
 }
 \author{
 \packageAuthor{INQStatsR}
@@ -21,15 +20,13 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{INQStatsR}
 }
 \references{
-~~ Literature or other references for background information ~~
+\url{http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data}
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
+
 \keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+\url{https://github.com/henkar91/AdvRprogr_lab5}
 }
 \examples{
-~~ simple examples of the most important functions ~~
+
 }

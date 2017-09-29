@@ -6,7 +6,7 @@
 #' @field result a data frame.
 #' @description Returns the data from INQStats.
 #' Further information about  INQStats, e.g. how to get api key, what data is available, can be found on \url{http://blog.inqubu.com/inqstats-open-api-published-to-get-demographic-data}
-#' @examples 
+#' @examples
 #' databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = "us,lt,se", data = c("population","birth_rate","co2_emissions","fifa","hdi"),years = 1990:2015)$result
 #' @export databycountry
 #' @export
@@ -14,13 +14,12 @@
 
 databycountry <-  setRefClass(
     "databycountry",
-
+    
     # Things to do:
     # not sure if makes sense to have 'data' field as vector?.. It makes sense to have years as vector cause no one can be bothered to list out all years in the range (this is the format that you expect to receive)
     # however, if we insist user to provide 'data' as a character string they might add some random spaces or forget commas, so maybe vector is 'safer' option...
     # We need to ask Krzysztof if this way of getting result is ok  (see example at the bottom). I believe it should be fine as long as we properly document the package and provide the examples in documentation or vignette
     # Also need to think about country_code, now the code only works if we provide one country_code. If we provide two or more countries, the response from API is no longer data.frame format which means we would need to format it ourselves.. NOt sure how flexibal our function has to be.
-    # If we want to be bale to compare data from different countries, we need to have countru_code vector and then extend code that if length(country_code)>1 [prepare a df manually from the results]
     
     fields = list(
         # api key is provided by the INQStats, our key is "97c1f72e01dd5ba3"
@@ -61,10 +60,11 @@ databycountry <-  setRefClass(
             # use function from jsonlite to convert response to R data frame
             df_content <- fromJSON(raw_content)
             
-            if (df_content[[1]] == "error"|| http_error(raw_result)) {
+            if (df_content[[1]] == "error" ||
+                http_error(raw_result)) {
                 stop(
                     sprintf(
-                        "INQStats API request failed.\nstatus_code:[%s]\nmsg:<%s>", 
+                        "INQStats API request failed.\nstatus_code:[%s]\nmsg:<%s>",
                         status_code(raw_result),
                         df_content$msg
                     ),
@@ -73,7 +73,7 @@ databycountry <-  setRefClass(
             }
             
             
-
+            
             df_output <- data.frame(
                 country = character(),
                 dataset = character(),
