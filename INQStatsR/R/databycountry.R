@@ -34,8 +34,9 @@ databycountry <-  setRefClass(
     ),
     methods = list(
         initialize = function(api_key, country_code, data, years) {
-            # Create character string without spaces of country_code
-            # country_ch <- gsub(" ", "", toString(country_code), fixed = TRUE)
+            # Add neccessary libraries
+            library(jsonlite)
+            library(httr)
             # Create character string without spaces of years
             years_ch <- gsub(" ", "", toString(years), fixed = TRUE)
             # Create character string without spaces of data
