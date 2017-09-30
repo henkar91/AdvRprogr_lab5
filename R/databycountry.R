@@ -38,13 +38,14 @@ databycountry <-  setRefClass(
             library(jsonlite)
             library(httr)
             
-            stopifnot(is.numeric(years),is.vector(years))
-            stopifnot(is.character(country_code),is.vector(country_code))
-            stopifnot(is.character(data),is.vector(data))
-            stopifnot(is.character(api_key),length(api_key)==1)
-
+            stopifnot(is.numeric(years), is.vector(years))
+            stopifnot(is.character(country_code), is.vector(country_code))
+            stopifnot(is.character(data), is.vector(data))
+            stopifnot(is.character(api_key), length(api_key) == 1)
+            
             # Create character string without spaces of country_code
-            country_ch <- gsub(" ", "", toString(country_code), fixed = TRUE)
+            country_ch <-
+                gsub(" ", "", toString(country_code), fixed = TRUE)
             # Create character string without spaces of years
             years_ch <- gsub(" ", "", toString(years), fixed = TRUE)
             # Create character string without spaces of data
@@ -147,9 +148,16 @@ databycountry <-  setRefClass(
                 
             }
             result <<- df_output
+        },
+        get_country = function() {
+            return(as.vector(unique(result[["country"]])))
+        },
+        get_dataset = function() {
+            return(as.vector(unique(result[["dataset"]])))
         }
     )
 )
+
 # to query the results of this follow the example below:
 # test2 <- databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = "us", data = c("population","birth_rate"),years = 1990:2000)
 # test2$result$population
