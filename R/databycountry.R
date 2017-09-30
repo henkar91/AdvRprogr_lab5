@@ -162,3 +162,4 @@ databycountry <-  setRefClass(
 # test2 <- databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = "us", data = c("population","birth_rate"),years = 1990:2000)
 # test2$result$population
 # test2$result$birth_rate
+

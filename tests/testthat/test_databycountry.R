@@ -5,7 +5,10 @@ test_that("Error messages are returned if API returns error", {
     expect_error(databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = c("us","uk"), data = c("population","birth_rate","co2_emissions","fifa","hdi"),years = 1990:2015))
     })
 
-test1 <- databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = c("us"), data = c("population","birth_rate"),years = 2010:2011)
+test1 <- databycountry$new(api_key= "97c1f72e01dd5ba3", 
+                           country_code = c("us"), 
+                           data = c("population","birth_rate"),
+                           years = 2010:2011)
 
 
 test_that("class is correct", {
@@ -85,4 +88,24 @@ test_that("Check that incorrect arguments are not accepted", {
     expect_error(databycountry$new(api_key= c("asd","123"), country_code = c("se","lt"), data = c(123,567),years = c(2017,2009)))
     expect_error(databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = c("se","lt"), data = c(123,567),years = c(2017,2009)))
     expect_error(databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = c("se","lt"), data = c("death_rate"),years = c("y2018","y2015")))
+})
+
+test4 <- databycountry$new(api_key = "97c1f72e01dd5ba3", 
+                           country_code = c("se","us"),
+                           data = c("debts_capita",
+                                    "debts_percent"), 
+                           years = 2010:2017)
+
+test_that("Test method for get_country", {
+    expect_true(is.vector(test3$get_country()),
+                length(test3$get_country()) > 0)
+    expect_equivalent(test4$get_country(), c("Sweden", "USA"))
+    
+})
+
+
+test_that("Test method for get_dataset", {
+    expect_true(is.vector(test3$get_dataset()),
+                length(test3$get_dataset()) > 0)
+    expect_equivalent(test4$get_dataset(), c("debts_capita", "debts_percent"))
 })
