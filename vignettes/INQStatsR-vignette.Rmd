@@ -21,7 +21,6 @@ devtools::install_github("henkar91/AdvRprogr_lab5/INQStatsR")
 library(INQStatsR)
 ```
 
-The package contains two functions, databycountry() and runShinyapp(). 
 
 The package depends on 4 other packages:
 ```{r, eval = FALSE}
