@@ -1,1 +1,5 @@
 * In the DESCRIPTION file, the packages that we use in our package should be listed under Depends or Imports?
+* API handles errors unconventionally (always has status 200), hence we had to implement custom error handling
+* at  first  we included the shiny app into the API package.
+* we could not extract the unique attributes from the dataset for shiny app
+* 
