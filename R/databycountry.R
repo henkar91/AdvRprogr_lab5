@@ -14,13 +14,6 @@
 
 databycountry <-  setRefClass(
     "databycountry",
-    
-    # Things to do:
-    # not sure if makes sense to have 'data' field as vector?.. It makes sense to have years as vector cause no one can be bothered to list out all years in the range (this is the format that you expect to receive)
-    # however, if we insist user to provide 'data' as a character string they might add some random spaces or forget commas, so maybe vector is 'safer' option...
-    # We need to ask Krzysztof if this way of getting result is ok  (see example at the bottom). I believe it should be fine as long as we properly document the package and provide the examples in documentation or vignette
-    # Also need to think about country_code, now the code only works if we provide one country_code. If we provide two or more countries, the response from API is no longer data.frame format which means we would need to format it ourselves.. NOt sure how flexibal our function has to be.
-    
     fields = list(
         # api key is provided by the INQStats, our key is "97c1f72e01dd5ba3"
         api_key = "character",
@@ -35,8 +28,6 @@ databycountry <-  setRefClass(
     methods = list(
         initialize = function(api_key, country_code, data, years) {
             # Add neccessary libraries
-            library(jsonlite)
-            library(httr)
             
             stopifnot(is.numeric(years), is.vector(years))
             stopifnot(is.character(country_code), is.vector(country_code))
@@ -157,9 +148,4 @@ databycountry <-  setRefClass(
         }
     )
 )
-
-# to query the results of this follow the example below:
-# test2 <- databycountry$new(api_key= "97c1f72e01dd5ba3", country_code = "us", data = c("population","birth_rate"),years = 1990:2000)
-# test2$result$population
-# test2$result$birth_rate
 
